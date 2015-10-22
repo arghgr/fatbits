@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.fr-boxes {
+  float: left;
+  min-height: 480px;
+  min-width: 480px;
+  width: 100%;
+}
+
+.fr-box {
+  float: left;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF;
+  cursor: default;
+}
