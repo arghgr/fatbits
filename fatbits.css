@@ -4,12 +4,12 @@ body {
   width: 100%;
 }
 
-.fr-boxes {
+.f-boxes {
   float: left;
   width: 100%;
 }
 
-.fr-box {
+.f-box {
   float: left;
   display: inline-block;
   vertical-align: top;

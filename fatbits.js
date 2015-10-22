@@ -1,8 +1,23 @@
+var bw = true;
+var borderWidth = 1;
+var boxSize = 20;
+
+var boxClass = 'f-box';
+var boxesClass = 'f-boxes';
+var white = 'rgb(255, 255, 255)';
+var black = 'rgb(0, 0, 0)';
+
+var drawing = false;
+var filled = false;
+
+var getElem = function(e) {
+  var relX = e.pageX - window.pageXOffset;
+  var relY = e.pageY - window.pageYOffset;
+  var elem = $(document.elementFromPoint(relX, relY));
+  return elem;
+}
 
 var makeGrid = function() {
-  var borderWidth = 1;
-  var boxSize = 20;
-
   var winWidth = $(window).width();
   var winHeight = $(window).height();
   var boxNumX = Math.floor(winWidth / (boxSize + (borderWidth * 2)));
@@ -10,45 +25,33 @@ var makeGrid = function() {
   var numBox = boxNumX * boxNumY;
 
   for(var i = 0; i < numBox; i++) {
-    $('<div/>', { class: 'fr-box' }).appendTo('.fr-boxes');
+    $('<div/>', { class: boxClass }).appendTo('.' + boxesClass);
   }
 
-  $('.fr-box').css({
+  $('.' + boxClass).css({
     'border': borderWidth + 'px solid #FFFFFF',
     'width': boxSize + 'px',
     'height': boxSize + 'px'
   });
-
 }
 
-
-var setupDraw = function() {
-  var drawing = false;
-  var filled = false;
-  var white = 'rgb(255, 255, 255)';
-  var black = 'rgb(0, 0, 0)';
-  var getElem = function(e) {
-    var relX = e.pageX - window.pageXOffset;
-    var relY = e.pageY - window.pageYOffset;
-    var elem = $(document.elementFromPoint(relX, relY));
-    return elem;
-  }
-  var fillBox = function(e) {
-    var elem = getElem(e);
-    if (!elem.hasClass('fr-boxes')) {
-      if (filled) {
-        elem.css({
-          'background-color': white
-        });
-      } else {
-        elem.css({
-          'background-color': black
-        });
-      }
+var fillBox = function(e) {
+  var elem = getElem(e);
+  if (bw && !elem.hasClass(boxesClass)) {
+    if (filled) {
+      elem.css({
+        'background-color': white
+      });
+    } else {
+      elem.css({
+        'background-color': black
+      });
     }
   }
+}
 
-  $('.fr-boxes').mousedown(function(e) {
+var setupDraw = function() {
+  $('.' + boxesClass).mousedown(function(e) {
     drawing = true;
     var downElem = getElem(e);
     if (downElem.css('background-color') == white) {
@@ -66,15 +69,14 @@ var setupDraw = function() {
     });
   });
 
-  $('.fr-boxes').mouseover(function(e) {
+  $('.' + boxesClass).mouseover(function(e) {
     if (drawing == true) {
       fillBox(e);
     }
   });
-
 }
 
 $(document).ready(function() {
-  makeGrid(40);
+  makeGrid();
   setupDraw();
 });
