@@ -3,11 +3,11 @@ var boxSize = 40;
 
 var rainbowNum = 0;
 var rainbow = [
-  "red", // red
+  "#FF0000", // red
   "#FF8C00", // darkorange
-  "yellow", // yellow
-  "green", // green
-  "blue", // blue
+  "#FFFF00", // yellow
+  "#008000", // green
+  "#0000FF", // blue
   "#4B0082", // indigo
   "#800080" // purple
 ];
