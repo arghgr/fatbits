@@ -11,8 +11,21 @@ var drawing = false;
 var filled = false;
 
 var getElem = function(e) {
-  var relX = e.pageX - window.pageXOffset;
-  var relY = e.pageY - window.pageYOffset;
+  var type = e.type;
+  var relX;
+  var relY;
+  if (_.contains(type, 'mouse')) {
+    relX = e.pageX - window.pageXOffset;
+    relY = e.pageY - window.pageYOffset;
+  } else if (_.contains(type, 'touch')) {
+    if (type == 'touchend') {
+      relX = e.originalEvent.changedTouches[0].pageX - window.pageXOffset;
+      relY = e.originalEvent.changedTouches[0].pageY - window.pageYOffset;
+    } else {
+      relX = e.originalEvent.touches[0].pageX - window.pageXOffset;
+      relY = e.originalEvent.touches[0].pageY - window.pageYOffset;
+    }
+  }
   var elem = $(document.elementFromPoint(relX, relY));
   return elem;
 }
@@ -51,7 +64,9 @@ var fillBox = function(e) {
 }
 
 var setupDraw = function() {
-  $('.' + boxesClass).mousedown(function(e) {
+  $('.' + boxesClass).on('touchstart mousedown', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
     drawing = true;
     var downElem = getElem(e);
     if (downElem.css('background-color') == clearColor) {
@@ -59,17 +74,21 @@ var setupDraw = function() {
     } else {
       filled = true;
     }
-    $(this).on('mouseup', function handler(evt) {
+    $(this).on('touchend mouseup', function handler(evt) {
+      evt.stopPropagation();
+      evt.preventDefault();
       drawing = false;
       var upElem = getElem(evt);
       if(_.isEqual(downElem, upElem)) {
         fillBox(e);
       }
-      $(this).off('mouseup', handler);
+      $(this).off('touchend mouseup', handler);
     });
   });
 
-  $('.' + boxesClass).mouseover(function(e) {
+  $('.' + boxesClass).on('touchmove mouseover', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
     if (drawing == true) {
       fillBox(e);
     }
