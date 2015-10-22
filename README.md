@@ -1,5 +1,5 @@
 # fatbits
-MacPaint's FatBits magnifier, implemented in jQuery. Featuring a secret disco mode for your newfangled color monitor.
+MacPaint's FatBits magnifier, implemented in jQuery. Featuring a disco mode for your newfangled color monitor.
 
 To run:
 
