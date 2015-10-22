@@ -24,6 +24,7 @@ var makeGrid = function() {
 
 var setupDraw = function() {
   var drawing = false;
+  var filled = false;
   var white = 'rgb(255, 255, 255)';
   var black = 'rgb(0, 0, 0)';
   var getElem = function(e) {
@@ -35,13 +36,13 @@ var setupDraw = function() {
   var fillBox = function(e) {
     var elem = getElem(e);
     if (!elem.hasClass('fr-boxes')) {
-      if (elem.css('background-color') == white) {
-        elem.css({
-          'background-color': black
-        });
-      } else if (elem.css('background-color') == black) {
+      if (filled) {
         elem.css({
           'background-color': white
+        });
+      } else {
+        elem.css({
+          'background-color': black
         });
       }
     }
@@ -50,6 +51,11 @@ var setupDraw = function() {
   $('.fr-boxes').mousedown(function(e) {
     drawing = true;
     var downElem = getElem(e);
+    if (downElem.css('background-color') == white) {
+      filled = false;
+    } else {
+      filled = true;
+    }
     $(this).on('mouseup', function handler(evt) {
       drawing = false;
       var upElem = getElem(evt);
