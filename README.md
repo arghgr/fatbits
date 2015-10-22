@@ -7,4 +7,4 @@ To run:
 
 2. Open index.html if you want regular FatBits
 
-3. Open disco.html if you want to party
+3. Open disco/index.html if you want to party
