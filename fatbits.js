@@ -10,6 +10,12 @@ var fillColor = 'rgb(0, 0, 0)';
 var drawing = false;
 var filled = false;
 
+if (window.devicePixelRatio > 1) {
+  boxSize = 40;
+} else {
+  boxSize = 20;
+}
+
 var getElem = function(e) {
   var type = e.type;
   var relX;
@@ -50,7 +56,7 @@ var makeGrid = function() {
 
 var fillBox = function(e) {
   var elem = getElem(e);
-  if (bw && !elem.hasClass(boxesClass)) {
+  if (bw && elem.hasClass(boxClass) && !elem.hasClass(boxesClass)) {
     if (filled) {
       elem.css({
         'background-color': clearColor

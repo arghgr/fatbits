@@ -1,5 +1,10 @@
 var bw = false;
-var boxSize = 40;
+
+if (window.devicePixelRatio > 1) {
+  boxSize = 80;
+} else {
+  boxSize = 40;
+}
 
 var rainbowNum = 0;
 var rainbow = [
@@ -48,7 +53,7 @@ var animateColors = function(elem) {
 
 var fillBox = function(e){
   var elem = getElem(e);
-  if (!elem.hasClass(boxesClass)) {
+  if (elem.hasClass(boxClass) && !elem.hasClass(boxesClass)) {
     if (filled) {
       elem.stop(false);
       elem.css({ 'background-color': clearColor });
