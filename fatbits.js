@@ -1,13 +1,13 @@
 
-var makeGrid = function(gridSize) {
-  var numBox = Math.pow(gridSize, 2);
+var makeGrid = function() {
   var borderWidth = 1;
-  var boxesWidth = $('.fr-boxes').width();
-  var boxSize = ((boxesWidth / gridSize) - (borderWidth * 2)) + 'px';
+  var boxSize = 20;
 
-  console.log('gridSize: ' + gridSize);
-  console.log('numBox: ' + numBox);
-  console.log('boxSize: ' + boxSize);
+  var winWidth = $(window).width();
+  var winHeight = $(window).height();
+  var boxNumX = Math.floor(winWidth / (boxSize + (borderWidth * 2)));
+  var boxNumY = Math.floor(winHeight / (boxSize + (borderWidth * 2)));
+  var numBox = boxNumX * boxNumY;
 
   for(var i = 0; i < numBox; i++) {
     $('<div/>', { class: 'fr-box' }).appendTo('.fr-boxes');
@@ -15,8 +15,8 @@ var makeGrid = function(gridSize) {
 
   $('.fr-box').css({
     'border': borderWidth + 'px solid #FFFFFF',
-    'width': boxSize,
-    'height': boxSize
+    'width': boxSize + 'px',
+    'height': boxSize + 'px'
   });
 
 }
