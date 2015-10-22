@@ -38,7 +38,10 @@ cycleRainbow = function() {
 var animateColors = function(elem) {
   var animation = function() {
     var color = cycleRainbow();
-    elem.animate({ backgroundColor: color }, 500, animation);
+    elem.animate({ backgroundColor: color }, {
+      duration: 500,
+      complete: animation
+    });
   }
   animation();
 }
