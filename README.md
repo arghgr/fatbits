@@ -3,7 +3,7 @@ MacPaint's FatBits magnifier, implemented in jQuery. Featuring a secret disco mo
 
 To run:
 
-1. Download the ZIP file
+1. Download the ZIP file (or clone this repository)
 
 2. Open index.html if you want regular FatBits
 
