@@ -4,8 +4,8 @@ var boxSize = 20;
 
 var boxClass = 'f-box';
 var boxesClass = 'f-boxes';
-var white = 'rgb(255, 255, 255)';
-var black = 'rgb(0, 0, 0)';
+var clearColor = 'rgb(255, 255, 255)';
+var fillColor = 'rgb(0, 0, 0)';
 
 var drawing = false;
 var filled = false;
@@ -40,11 +40,11 @@ var fillBox = function(e) {
   if (bw && !elem.hasClass(boxesClass)) {
     if (filled) {
       elem.css({
-        'background-color': white
+        'background-color': clearColor
       });
     } else {
       elem.css({
-        'background-color': black
+        'background-color': fillColor
       });
     }
   }
@@ -54,7 +54,7 @@ var setupDraw = function() {
   $('.' + boxesClass).mousedown(function(e) {
     drawing = true;
     var downElem = getElem(e);
-    if (downElem.css('background-color') == white) {
+    if (downElem.css('background-color') == clearColor) {
       filled = false;
     } else {
       filled = true;

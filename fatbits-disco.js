@@ -48,7 +48,7 @@ var fillBox = function(e){
   if (!elem.hasClass(boxesClass)) {
     if (filled) {
       elem.stop(false);
-      elem.css({ 'background-color': white });
+      elem.css({ 'background-color': clearColor });
     } else {
       if (!elem.is(':animated')) {
         animateColors(elem);
